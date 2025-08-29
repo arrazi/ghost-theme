@@ -1,0 +1,74 @@
+{{!-- Pagination partial for BBC Indonesia inspired theme --}}
+
+{{#if pagination}}
+<nav class="pagination" role="navigation" aria-label="Pagination Navigation">
+    {{#if pagination.prev}}
+        <a href="{{page_url pagination.prev}}" class="pagination-prev" rel="prev">
+            <span class="pagination-label">← Sebelumnya</span>
+        </a>
+    {{else}}
+        <span class="pagination-prev pagination-disabled">
+            <span class="pagination-label">← Sebelumnya</span>
+        </span>
+    {{/if}}
+
+    <div class="pagination-info">
+        <span class="pagination-current">Halaman {{pagination.page}}</span>
+        <span class="pagination-total">dari {{pagination.pages}}</span>
+    </div>
+
+    {{#if pagination.next}}
+        <a href="{{page_url pagination.next}}" class="pagination-next" rel="next">
+            <span class="pagination-label">Selanjutnya →</span>
+        </a>
+    {{else}}
+        <span class="pagination-next pagination-disabled">
+            <span class="pagination-label">Selanjutnya →</span>
+        </span>
+    {{/if}}
+</nav>
+
+{{!-- Extended pagination with page numbers for larger screens --}}
+<nav class="pagination-extended" role="navigation" aria-label="Extended Pagination">
+    {{#if pagination.prev}}
+        <a href="{{page_url pagination.prev}}" class="page-link page-prev" rel="prev">
+            ← Sebelumnya
+        </a>
+    {{/if}}
+
+    {{!-- First page --}}
+    {{#unless pagination.isFirst}}
+        <a href="{{page_url 1}}" class="page-link">1</a>
+        {{#if pagination.from}}
+            {{#unless (eq pagination.from 2)}}
+                <span class="page-dots">…</span>
+            {{/unless}}
+        {{/if}}
+    {{/unless}}
+
+    {{!-- Page numbers around current --}}
+    {{#foreach pagination.pages}}
+        {{#if current}}
+            <span class="page-link page-current" aria-current="page">{{number}}</span>
+        {{else}}
+            <a href="{{page_url number}}" class="page-link">{{number}}</a>
+        {{/if}}
+    {{/foreach}}
+
+    {{!-- Last page --}}
+    {{#unless pagination.isLast}}
+        {{#if pagination.to}}
+            {{#unless (eq pagination.to pagination.pages)}}
+                <span class="page-dots">…</span>
+            {{/unless}}
+        {{/if}}
+        <a href="{{page_url pagination.pages}}" class="page-link">{{pagination.pages}}</a>
+    {{/unless}}
+
+    {{#if pagination.next}}
+        <a href="{{page_url pagination.next}}" class="page-link page-next" rel="next">
+            Selanjutnya →
+        </a>
+    {{/if}}
+</nav>
+{{/if}}

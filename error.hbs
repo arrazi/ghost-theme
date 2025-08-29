@@ -1,0 +1,74 @@
+{{!< default}}
+
+{{#contentFor "body_class"}}error-template error-404{{/contentFor}}
+
+<div class="error-page">
+  <div class="container">
+    <div class="error-content">
+      <div class="error-code">404</div>
+
+      <h1 class="error-title">Halaman Tidak Ditemukan</h1>
+
+      <p class="error-description">
+        Maaf, halaman yang Anda cari tidak dapat ditemukan. Mungkin telah dipindahkan, dihapus, atau Anda mengetikkan URL yang salah.
+      </p>
+
+      <div class="error-actions">
+        <a href="{{@site.url}}" class="btn btn-primary">Kembali ke Beranda</a>
+        <button onclick="history.back()" class="btn btn-secondary">Halaman Sebelumnya</button>
+      </div>
+
+      <div class="search-suggestion">
+        <h3>Mungkin Anda mencari:</h3>
+
+        {{!-- Popular articles --}}
+        {{#get "posts" limit="4" order="published_at desc"}}
+          <div class="suggested-posts">
+            {{#foreach posts}}
+              <article class="suggested-article">
+                {{#if feature_image}}
+                  <div class="article-image">
+                    <a href="{{url}}">
+                      <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                  </div>
+                {{/if}}
+                <div class="article-content">
+                  <h4 class="article-title">
+                    <a href="{{url}}">{{title}}</a>
+                  </h4>
+                  <time datetime="{{date format="YYYY-MM-DD"}}">
+                    {{date format="DD MMMM YYYY"}}
+                  </time>
+                </div>
+              </article>
+            {{/foreach}}
+          </div>
+        {{/get}}
+
+        {{!-- Categories --}}
+        <div class="categories-suggestion">
+          <h4>Jelajahi Kategori:</h4>
+          {{#get "tags" limit="8" filter="visibility:public"}}
+            <div class="category-links">
+              {{#foreach tags}}
+                <a href="{{url}}" class="category-link">{{name}}</a>
+              {{/foreach}}
+            </div>
+          {{/get}}
+        </div>
+      </div>
+    </div>
+
+    <div class="error-illustration">
+      <svg viewBox="0 0 400 300" class="error-svg">
+        <!-- 404 Illustration -->
+        <circle cx="200" cy="150" r="120" fill="var(--color-accent)" stroke="var(--color-border)" stroke-width="2"/>
+        <text x="200" y="170" text-anchor="middle" font-size="48" font-weight="700" fill="var(--color-primary)">404</text>
+        <path d="M150 100 Q200 80 250 100" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+        <circle cx="170" cy="130" r="8" fill="var(--color-text-light)"/>
+        <circle cx="230" cy="130" r="8" fill="var(--color-text-light)"/>
+      </svg>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+{
+  "name": "bbc-indonesia-theme",
+  "description": "A modern news theme inspired by BBC Indonesia design for Ghost 6.0",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Your Name",
+    "email": "your@email.com"
+  },
+  "keywords": [
+    "ghost-theme",
+    "news",
+    "journalism",
+    "responsive",
+    "modern"
+  ],
+  "engines": {
+    "ghost": ">=6.0.0"
+  },
+  "config": {
+    "posts_per_page": 20,
+    "image_sizes": {
+      "xs": {
+        "width": 150
+      },
+      "s": {
+        "width": 240
+      },
+      "m": {
+        "width": 400
+      },
+      "l": {
+        "width": 720
+      },
+      "xl": {
+        "width": 960
+      }
+    },
+    "card_assets": true,
+    "custom": {
+      "navigation_layout": {
+        "type": "select",
+        "options": ["Logo on the left", "Logo in the center"],
+        "default": "Logo on the left"
+      },
+      "show_publication_cover": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{{!< default}}
+
+{{#tag}}
+{{#contentFor "body_class"}} tag-template tag-{{slug}}{{/contentFor}}
+
+<div class="tag-page">
+    <div class="container">
+        {{!-- Tag Header --}}
+        <header class="tag-header">
+            <h1 class="tag-title">{{name}}</h1>
+            {{#if description}}
+                <p class="tag-description">{{description}}</p>
+            {{/if}}
+            {{#if feature_image}}
+                <img src="{{img_url feature_image size="xl"}}" alt="{{name}}" class="tag-image">
+            {{/if}}
+        </header>
+
+        {{!-- Posts --}}
+        {{#if posts}}
+            <section class="tag-posts">
+                <div class="news-grid">
+                    {{#foreach posts}}
+                        <article class="news-article">
+                            {{#if feature_image}}
+                                <div class="article-image">
+                                    <a href="{{url}}">
+                                        <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
+                                    </a>
+                                </div>
+                            {{/if}}
+                            <div class="article-content">
+                                <h3 class="article-title">
+                                    <a href="{{url}}">{{title}}</a>
+                                </h3>
+                                {{#if excerpt}}
+                                    <p class="article-excerpt">{{excerpt}}</p>
+                                {{/if}}
+                                <div class="article-meta">
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="DD MMMM YYYY"}}
+                                    </time>
+                                    {{#primary_author}}
+                                        <span class="author">{{name}}</span>
+                                    {{/primary_author}}
+                                </div>
+                            </div>
+                        </article>
+                    {{/foreach}}
+                </div>
+
+                {{!-- Pagination --}}
+                {{pagination}}
+            </section>
+        {{else}}
+            <div class="no-posts">
+                <h2>Belum ada artikel di kategori ini</h2>
+                <p>Silakan periksa kategori lain atau kembali ke halaman utama.</p>
+            </div>
+        {{/if}}
+    </div>
+</div>
+
+{{/tag}}

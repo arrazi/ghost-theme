@@ -1,0 +1,18 @@
+.kg-card {
+    margin: 4rem 0;
+}
+
+.kg-width-wide {
+    width: 100%;
+    max-width: 100%;
+}
+
+.kg-width-full {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.kg-gallery-card {
+    display: grid;
+    gap: 1rem;
+}

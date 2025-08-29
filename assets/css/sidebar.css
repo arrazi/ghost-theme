@@ -1,0 +1,49 @@
+.sidebar-widget {
+    margin-bottom: 4rem;
+}
+
+.widget-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.6rem;
+}
+
+.popular-posts article {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+}
+
+.popular-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.category-link {
+    display: inline-block;
+    background: var(--color-accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    margin: 0.4rem;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.newsletter-form input {
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.4rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.newsletter-form button {
+    padding: 1rem 2rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}

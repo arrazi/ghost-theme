@@ -1,0 +1,242 @@
+.error-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 0;
+}
+
+.error-page .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 120rem;
+}
+
+.error-content {
+    text-align: center;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    opacity: 0.1;
+    margin-bottom: 2rem;
+    line-height: 1;
+}
+
+.error-title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin: 0 0 2rem 0;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+.error-description {
+    font-size: 1.8rem;
+    color: var(--color-text-light);
+    margin: 0 0 4rem 0;
+    line-height: 1.5;
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1.6rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.btn {
+    padding: 1.4rem 2.8rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #a01515;
+    transform: translateY(-0.2rem);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    background: var(--color-accent);
+    transform: translateY(-0.2rem);
+}
+
+.error-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-svg {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+}
+
+.search-suggestion {
+    text-align: left;
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.search-suggestion h3 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 0 0 2.4rem 0;
+    color: var(--color-text);
+}
+
+.suggested-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.suggested-article {
+    display: flex;
+    gap: 1.2rem;
+    background: var(--color-accent);
+    padding: 1.6rem;
+    border-radius: 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.suggested-article:hover {
+    transform: translateY(-0.2rem);
+}
+
+.suggested-article .article-image {
+    flex-shrink: 0;
+    width: 8rem;
+}
+
+.suggested-article .article-image img {
+    width: 100%;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 0.4rem;
+}
+
+.suggested-article .article-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 0.8rem 0;
+    line-height: 1.3;
+}
+
+.suggested-article .article-title a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.suggested-article .article-title a:hover {
+    color: var(--color-primary);
+}
+
+.suggested-article time {
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+}
+
+.categories-suggestion {
+    margin-top: 2rem;
+}
+
+.categories-suggestion h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0 0 1.2rem 0;
+    color: var(--color-text);
+}
+
+.category-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.category-link {
+    background: var(--color-background);
+    color: var(--color-text);
+    padding: 0.8rem 1.6rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+}
+
+.category-link:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+@media (max-width: 1024px) {
+    .error-page .container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .error-content {
+        order: 2;
+    }
+    
+    .error-illustration {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .error-code {
+        font-size: 6rem;
+    }
+    
+    .error-title {
+        font-size: 2.8rem;
+    }
+    
+    .error-description {
+        font-size: 1.6rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 25rem;
+    }
+    
+    .suggested-posts {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:site" content="{{social_url type="twitter"}}">
+    <meta name="facebook:site" content="{{social_url type="facebook"}}">
+    <title>{{meta_title}}</title>
+
+{{!-- Global Styles --}}
+<link rel="stylesheet" href="{{asset "css/base.css"}}">
+
+{{!-- Template-Specific Styles --}}
+<link rel="stylesheet" href="{{asset "css/page.css"}}">
+<link rel="stylesheet" href="{{asset "css/author.css"}}">
+<link rel="stylesheet" href="{{asset "css/error.css"}}">
+<link rel="stylesheet" href="{{asset "css/post.css"}}">
+
+{{!-- Partials --}}
+<link rel="stylesheet" href="{{asset "css/navigation.css"}}">
+<link rel="stylesheet" href="{{asset "css/pagination.css"}}">
+
+<link rel="preload" href="{{asset "fonts/your-font.woff2"}}" as="font" type="font/woff2" crossorigin>
+
+{{!-- Favicon --}}
+<link rel="icon" href="{{asset "favicon.ico"}}">
+
+{{!-- Font --}}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
+
+    
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}{{{block "body_class"}}}">
+    <div class="site-wrapper">
+        {{!-- Header --}}
+        <header class="site-header">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="site-logo">
+                        {{#if @site.logo}}
+                            <a href="{{@site.url}}">
+                                <img src="{{@site.logo}}" alt="{{@site.title}}" class="logo-img">
+                            </a>
+                        {{else}}
+                            <a href="{{@site.url}}" class="site-title">{{@site.title}}</a>
+                        {{/if}}
+                    </div>
+                    
+                    <nav class="site-nav">
+                        {{navigation}}
+                    </nav>
+                    
+                    <div class="header-actions">
+                        <button class="search-toggle" aria-label="Search">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                        <button class="mobile-menu-toggle" aria-label="Menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        {{!-- Main content --}}
+        <main class="site-main">
+            {{{body}}}
+        </main>
+
+        {{!-- Footer --}}
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <h3>{{@site.title}}</h3>
+                        {{#if @site.description}}
+                            <p>{{@site.description}}</p>
+                        {{/if}}
+                    </div>
+                    
+                    <div class="footer-nav">
+                        <h4>Navigasi</h4>
+                        {{navigation type="secondary"}}
+                    </div>
+                    
+                    <div class="footer-social">
+                        <h4>Media Sosial</h4>
+                        <div class="social-links">
+                            {{#if @site.facebook}}
+    <a href="{{social_url type="facebook"}}" target="_blank" rel="noopener">Facebook</a>
+{{/if}}
+{{#if @site.twitter}}
+    <a href="{{social_url type="twitter"}}" target="_blank" rel="noopener">Twitter</a>
+{{/if}}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
+                    <p>Powered by <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{asset "js/main.js"}}"></script>
+    {{ghost_foot}}
+</body>
+</html>

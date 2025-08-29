@@ -1,0 +1,12 @@
+{{!-- Navigation partial for BBC Indonesia inspired theme --}}
+
+<ul class="nav-list">
+    {{#foreach navigation}}
+        <li class="nav-item">
+            <a href="{{url absolute="true"}}" class="nav-link {{#if current}}nav-current{{/if}}">
+                {{label}}
+            </a>
+        </li>
+    {{/foreach}}
+</ul>
+
