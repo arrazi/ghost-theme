@@ -1,0 +1,19 @@
+{{!-- News grid --}}
+<h2 class="news-section-title">Berita Lainnya</h2>
+      <div class="news-main">
+        {{#foreach posts from="6" to="22"}}
+          <article class="news-card">
+            <a href="{{url}}">
+              {{#if feature_image}}
+                <div class="news-thumb">
+                  <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+                </div>
+              {{/if}}
+              <div class="news-info">
+                <h3 class="news-title font-semibold">{{title}}</h3>
+                <time class="news-date font-regular">{{date format="D MMMM YYYY"}}</time>
+              </div>
+            </a>
+          </article>
+        {{/foreach}}
+      </div>

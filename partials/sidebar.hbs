@@ -1,0 +1,81 @@
+{{> "breaking-news"}}
+
+<aside class="sidebar-column">
+
+  {{!-- Widget Populer --}}
+  <div class="sidebar-widget popular">
+    <h3 class="widget-title font-bold">Terpopuler</h3>
+    <div class="popular-posts">
+      {{#get "posts" limit="5" order="reading_time desc"}}
+        {{#foreach posts}}
+          <article class="popular-article">
+            <div class="popular-number"></div>
+            <div class="popular-content">
+              <h4 class="font-semibold">
+                <a href="{{url}}">{{title}}</a>
+              </h4>
+              <time class="font-regular">{{date format="D MMM YYYY"}}</time>
+            </div>
+          </article>
+        {{/foreach}}
+      {{/get}}
+    </div>
+  </div>
+
+  {{!-- Widget Newsletter (hanya tampil jika hideNewsletter tidak diberikan) --}}
+  {{#unless hideNewsletter}}
+  <div class="sidebar-widget newsletter-widget">
+      <h2 class="widget-title">Berlangganan</h2>
+      <p>Dapatkan berita terbaru langsung di email Anda.</p>
+      <form class="newsletter-form" data-members-form="subscribe">
+          <input type="email" name="email" placeholder="Masukkan email Anda" required>
+          <button type="submit">Langganan</button>
+      </form>
+  </div>
+  {{/unless}}
+
+  {{!-- Categories Widget (tetap dikomentari, tidak dihapus) --}}
+  {{!--
+  <div class="sidebar-widget categories">
+    <h3 class="widget-title">Tag</h3>
+    <div class="categories">
+      {{#get "tags" limit="6" order="count.posts desc"}}
+        {{#foreach tags}}
+          <a class="category-link" href="{{url}}">{{name}}</a>
+        {{/foreach}}
+      {{/get}}
+    </div>
+  </div>
+  --}}
+
+  {{!-- Podcast Widget Lama (tetap aktif) --}}
+  <div class="sidebar-widget podcast">
+    <h3 class="widget-title">Podcast</h3>
+    <div class="podcast-list">
+      {{#get "pages" filter="tag:hash-podcast" limit="5"}}
+        {{#foreach pages}}
+          <div class="podcast-item">
+            {{#if feature_image}}
+              <div class="podcast-thumb">
+                <img src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+              </div>
+            {{/if}}
+            <div class="podcast-info">
+              <h4><a href="{{url}}">{{title}}</a></h4>
+            </div>
+          </div>
+        {{/foreach}}
+      {{/get}}
+    </div>
+  </div>
+
+  {{!-- Podcast Widget Alternatif / Link Halaman Podcast --}}
+  {{!-- <div class="sidebar-widget podcast">
+    <h3 class="widget-title">Podcast</h3>
+    <p>Dengarkan kumpulan podcast kami di halaman khusus.</p>
+    <a class="podcast-link" href="{{@site.url}}/podcast/">
+      Lihat Semua Podcast →
+    </a>
+  </div> --}}
+
+</aside>

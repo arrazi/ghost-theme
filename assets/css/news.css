@@ -1,0 +1,268 @@
+/* ============================================
+   NEWS GRID (general cards)
+   ============================================ */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: var(--grid-gap);
+  margin: 4rem 0;
+}
+
+.news-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.news-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.news-thumb img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.news-info {
+  padding: 2rem;
+}
+
+.news-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.news-title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.news-title a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.news-date {
+  font-size: 1.3rem;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.news-excerpt {
+  font-size: 1.4rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.news-section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 2rem 0; /* lebih rapat ke grid */
+  padding: 0; /* tanpa garis bawah */
+  border: none;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   HERO LEAD
+   ============================================ */
+.hero-lead {
+  background: var(--color-accent);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.lead-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-family: var(--gh-font-heading);
+}
+
+.lead-subtitle {
+  font-size: 1.6rem;
+  color: var(--color-text-light);
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+/* ============================================
+   FEATURED GRID (khusus featured posts)
+   ============================================ */
+.featured-grid {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-gap);
+}
+
+.featured-grid .news-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--grid-gap);
+}
+
+.featured-grid .news-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
+}
+
+.featured-grid .news-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.featured-grid .news-info {
+  padding: 0;
+}
+
+.featured-grid .news-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.featured-grid .news-date {
+  font-size: 1.3rem;
+  color: var(--color-text-light);
+}
+
+/* ============================================
+   TWO COLUMN LAYOUT (news + sidebar)
+   ============================================ */
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: var(--grid-gap);
+  margin-top: 4rem;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   MASONRY NEWS MAIN (flat style, no box)
+   ============================================ */
+.news-main {
+  column-count: 3; /* desktop */
+  column-gap: var(--grid-gap);
+}
+
+.news-main .news-card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: var(--grid-gap);
+  break-inside: avoid;
+  background: none; /* no background */
+  border: none; /* no border */
+  border-radius: 0; /* no rounded corners */
+  box-shadow: none; /* no shadow */
+  overflow: visible;
+  transition: none; /* remove hover animation */
+}
+
+.news-main .news-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.news-main .news-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0; /* no rounded image */
+}
+
+.news-main .news-info {
+  padding: 0; /* no extra padding */
+  margin-top: 0.6rem;
+}
+
+.news-main .news-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+}
+
+.news-main .news-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.news-main .news-title a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.news-main .news-date {
+  font-size: 1.3rem;
+  color: var(--color-text-light);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+@media (max-width: 1200px) {
+  .featured-grid .news-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .news-main {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 992px) {
+  .two-column-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-column {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-grid .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .news-main {
+    column-count: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-grid .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-grid .news-title {
+    font-size: 1.6rem;
+  }
+
+  .featured-grid .news-date {
+    font-size: 1.2rem;
+  }
+
+  .news-info {
+    padding: 1.6rem;
+  }
+}

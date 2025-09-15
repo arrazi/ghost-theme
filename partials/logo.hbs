@@ -1,0 +1,7 @@
+{{#if @site.logo}}
+    <a href="{{@site.url}}">
+        <img src="{{@site.logo}}" alt="{{@site.title}}" class="logo-img">
+    </a>
+{{else}}
+    <a href="{{@site.url}}" class="site-title">{{@site.title}}</a>
+{{/if}}

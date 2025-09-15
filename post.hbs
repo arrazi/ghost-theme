@@ -1,159 +1,158 @@
 {{!< default}}
 
 {{#post}}
-{{#contentFor "body_class"}} post-template tag-{{primary_tag.slug}}{{/contentFor}}
+  {{#contentFor "body_class"}} post-template tag-{{primary_tag.slug}}{{/contentFor}}
 
-<article class="post">
-    <div class="container">
-        {{!-- Post Header --}}
-        <header class="post-header">
+  <main class="post-template">
+    <div class="container two-column-layout">
+
+      <!-- Main content -->
+      <div class="main-column">
+        <article class="post">
+
+          <!-- Post Header -->
+          <header class="post-header">
             {{#if primary_tag}}
-                <span class="post-tag">
-                    <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>
-                </span>
+              <a href='{{primary_tag.url}}' class='post-tag' style='color: {{primary_tag.accent_color}};'>
+                {{primary_tag.name}}
+              </a>
             {{/if}}
-            
-            <h1 class="post-title">{{title}}</h1>
-            
+
+            <h1 class='post-title'>{{title}}</h1>
+
             {{#if excerpt}}
-                <p class="post-excerpt">{{excerpt}}</p>
+              <p class='post-excerpt'>{{excerpt}}</p>
             {{/if}}
-            
-            <div class="post-meta">
-                <div class="post-author">
-                    {{#primary_author}}
-                        {{#if profile_image}}
-                            <img src="{{img_url profile_image size="s"}}" alt="{{name}}" class="author-avatar">
-                        {{/if}}
-                        <div class="author-info">
-                            <h4 class="author-name">
-                                <a href="{{url}}">{{name}}</a>
-                            </h4>
-                            {{#if bio}}
-                                <p class="author-bio">{{bio}}</p>
-                            {{/if}}
-                        </div>
-                    {{/primary_author}}
-                </div>
-                
-                <div class="post-date">
-                    <time datetime="{{date format="YYYY-MM-DD"}}">
-                        {{date format="DD MMMM YYYY"}}
-                    </time>
-                    <span class="reading-time">{{reading_time minute="menit" minutes="menit"}}</span>
-                </div>
-            </div>
-        </header>
 
-        {{!-- Featured Image --}}
-        {{#if feature_image}}
-            <figure class="post-image">
-                <img src="{{img_url feature_image size="xl"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" loading="eager">
-                {{#if feature_image_caption}}
-                    <figcaption>{{feature_image_caption}}</figcaption>
-                {{/if}}
+            <div class='post-meta'>
+              <div class='post-author'>
+                {{#primary_author}}
+                  {{#if profile_image}}
+                    <a href='{{url}}'>
+                      <img src='{{img_url profile_image size="s"}}' alt='{{name}}' class='author-avatar'>
+                    </a>
+                  {{/if}}
+                {{/primary_author}}
+              </div>
+
+              <div class='post-meta-wrapper'>
+                <h4 class='author-name'>
+                  {{#primary_author}}<a href='{{url}}'>{{name}}</a>{{/primary_author}}
+                </h4>
+                <div class='post-meta-content'>
+                  <time datetime='{{date format="YYYY-MM-DD"}}'>{{date format="DD MMMM YYYY"}}</time>
+                  {{#if reading_time}}
+                    <span class='reading-time'><span class='bull'>—</span> {{reading_time minute="1 menit" minutes="% menit"}}</span>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <!-- Featured image + share buttons -->
+          {{#if feature_image}}
+            <figure class="post-image-wrapper">
+              <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+              
+              {{#if feature_image_caption}}
+                <figcaption>{{feature_image_caption}}</figcaption>
+              {{/if}}
+              
+              <div class="share-section">
+                <button class="share-toggle" aria-expanded="false" aria-controls="share-buttons">Bagikan ▾</button>
+                {{> "icons/share-buttons"}}
+              </div>
             </figure>
-        {{/if}}
+          {{/if}}
 
-        {{!-- Post Content --}}
-        <div class="post-content">
+          <!-- Post content -->
+          <div class='post-content'>
             {{content}}
-        </div>
+          </div>
 
-        {{!-- Post Footer --}}
-        <footer class="post-footer">
-            {{!-- Tags --}}
-            {{#if tags}}
-                <div class="post-tags">
-                    <h4>Tag:</h4>
-                    <div class="tag-list">
-                        {{#foreach tags}}
-                            <a href="{{url}}" class="tag">{{name}}</a>
-                        {{/foreach}}
-                    </div>
-                </div>
-            {{/if}}
+          <footer class='post-footer'>
+            <!-- Footer area (tags/author card etc) -->
+          </footer>
 
-            {{!-- Share Buttons --}}
-            <div class="post-share">
-                <h4>Bagikan:</h4>
-                <div class="share-buttons">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" class="share-btn facebook" target="_blank" rel="noopener">
-                        Facebook
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?text={{encode title}}&url={{url absolute="true"}}" class="share-btn twitter" target="_blank" rel="noopener">
-                        Twitter
-                    </a>
-                    <a href="https://wa.me/?text={{encode title}} {{url absolute="true"}}" class="share-btn whatsapp" target="_blank" rel="noopener">
-                        WhatsApp
-                    </a>
-                    <button class="share-btn copy-link" onclick="copyToClipboard('{{url absolute="true"}}')">
-                        Salin Link
-                    </button>
-                </div>
-            </div>
+        </article>
 
-            {{!-- Author Bio --}}
-            {{#primary_author}}
-                <div class="author-card">
-                    {{#if profile_image}}
-                        <img src="{{img_url profile_image size="m"}}" alt="{{name}}" class="author-avatar">
-                    {{/if}}
-                    <div class="author-details">
-                        <h4 class="author-name">
-                            <a href="{{url}}">{{name}}</a>
-                        </h4>
-                        {{#if bio}}
-                            <p class="author-bio">{{bio}}</p>
-                        {{/if}}
-                        <div class="author-social">
-                            {{#if website}}
-                                <a href="{{website}}" target="_blank" rel="noopener">Website</a>
-                            {{/if}}
-                            {{#if twitter}}
-    <a href="{{social_url type="twitter"}}" target="_blank" rel="noopener">Twitter</a>
-{{/if}}
-{{#if facebook}}
-    <a href="{{social_url type="facebook"}}" target="_blank" rel="noopener">Facebook</a>
-{{/if}}
+        <!-- Related posts -->
+        {{#get "posts" limit="3" filter="id:-{{id}}+tag:{{primary_tag.slug}}"}}
+          {{#if posts}}
+            <section class='related-posts'>
+              <div class='container'>
+                <h3 class='section-title'>Baca Juga</h3>
+                <div class='related-grid'>
+                  {{#foreach posts}}
+                    <article class='related-article'>
+                      {{#if feature_image}}
+                        <div class='article-image'>
+                          <a href='{{url}}'>
+                            <img src='{{img_url feature_image size="m"}}' alt='{{title}}' loading='lazy'>
+                          </a>
                         </div>
-                    </div>
+                      {{/if}}
+                      <div class='article-content'>
+                        <h4 class='article-title'><a href='{{url}}'>{{title}}</a></h4>
+                        <time datetime='{{date format="YYYY-MM-DD"}}'>{{date format="DD MMMM YYYY"}}</time>
+                      </div>
+                    </article>
+                  {{/foreach}}
                 </div>
-            {{/primary_author}}
-        </footer>
+              </div>
+            </section>
+          {{/if}}
+        {{/get}}
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar-column">
+        {{> "sidebar" hideNewsletter=true}}
+      </aside>
+
+
     </div>
-</article>
+  </main>
 
-{{!-- Related Posts --}}
-{{#get "posts" limit="3" filter="id:-{{id}}+tag:{{primary_tag.slug}}"}}
-    {{#if posts}}
-        <section class="related-posts">
-            <div class="container">
-                <h3 class="section-title">Artikel Terkait</h3>
-                <div class="related-grid">
-                    {{#foreach posts}}
-                        <article class="related-article">
-                            {{#if feature_image}}
-                                <div class="article-image">
-                                    <a href="{{url}}">
-                                        <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
-                                    </a>
-                                </div>
-                            {{/if}}
-                            <div class="article-content">
-                                <h4 class="article-title">
-                                    <a href="{{url}}">{{title}}</a>
-                                </h4>
-                                <time datetime="{{date format="YYYY-MM-DD"}}">
-                                    {{date format="DD MMMM YYYY"}}
-                                </time>
-                            </div>
-                        </article>
-                    {{/foreach}}
-                </div>
-            </div>
-        </section>
-    {{/if}}
-{{/get}}
+  <!-- Script expand/collapse share menu -->
+  <script>
+    (function(){
+      const toggleBtn = document.querySelector(".share-toggle");
+      const shareBar = document.querySelector(".share-buttons-bar");
 
+      if (toggleBtn && shareBar) {
+        shareBar.hidden = true;
+        toggleBtn.addEventListener("click", () => {
+          const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
+          toggleBtn.setAttribute("aria-expanded", !expanded);
+          shareBar.hidden = expanded;
+        });
+      }
+    })();
+  </script>
+
+{{else}}
+  <div class="post-not-found">
+    <h2>Artikel Tidak Ditemukan</h2>
+    <p>Maaf, artikel yang Anda cari tidak tersedia.</p>
+  </div>
 {{/post}}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const articleContent = document.querySelector(".post-content");
+    const paragraphs = articleContent.querySelectorAll("p");
+    if(paragraphs.length >= 4) {
+      const subscribeHtml = `
+        <div class="subscribe-article">
+          <h3>Berlangganan Berita</h3>
+          <p>Dapatkan berita terbaru langsung di email Anda.</p>
+          <form class="newsletter-form" data-members-form="subscribe">
+              <input type="email" name="email" placeholder="Masukkan email Anda" required>
+              <button type="submit">Langganan</button>
+          </form>
+        </div>`;
+      paragraphs[3].insertAdjacentHTML('afterend', subscribeHtml);
+    }
+  });
+</script>

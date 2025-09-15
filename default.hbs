@@ -7,109 +7,54 @@
     <meta name="facebook:site" content="{{social_url type="facebook"}}">
     <title>{{meta_title}}</title>
 
-{{!-- Global Styles --}}
-<link rel="stylesheet" href="{{asset "css/base.css"}}">
+    {{!-- Global Styles --}}
+    <link rel="stylesheet" href="{{asset "css/base.css"}}">
+    <link rel="stylesheet" href="{{asset "css/layout.css"}}">
 
-{{!-- Template-Specific Styles --}}
-<link rel="stylesheet" href="{{asset "css/page.css"}}">
-<link rel="stylesheet" href="{{asset "css/author.css"}}">
-<link rel="stylesheet" href="{{asset "css/error.css"}}">
-<link rel="stylesheet" href="{{asset "css/post.css"}}">
+    {{!-- Template Styles --}}
+    <link rel="stylesheet" href="{{asset "css/header.css"}}">
+    <link rel="stylesheet" href="{{asset "css/page.css"}}">
+    <link rel="stylesheet" href="{{asset "css/hero.css"}}">
+    <link rel="stylesheet" href="{{asset "css/sidebar.css"}}">
+    <link rel="stylesheet" href="{{asset "css/footer.css"}}">
+    <link rel="stylesheet" href="{{asset "css/author.css"}}">
+    <link rel="stylesheet" href="{{asset "css/error.css"}}">
+    <link rel="stylesheet" href="{{asset "css/ghost-cards.css"}}">
+    <link rel="stylesheet" href="{{asset "css/post.css"}}">
+    <link rel="stylesheet" href="{{asset "css/news.css"}}">
 
-{{!-- Partials --}}
-<link rel="stylesheet" href="{{asset "css/navigation.css"}}">
-<link rel="stylesheet" href="{{asset "css/pagination.css"}}">
+    {{!-- Partials --}}
+    <link rel="stylesheet" href="{{asset "css/navigation.css"}}">
+    <link rel="stylesheet" href="{{asset "css/pagination.css"}}">
 
-<link rel="preload" href="{{asset "fonts/your-font.woff2"}}" as="font" type="font/woff2" crossorigin>
+    {{!-- Favicon --}}
+    <link rel="icon" href="{{asset "favicon.ico"}}">
 
-{{!-- Favicon --}}
-<link rel="icon" href="{{asset "favicon.ico"}}">
+    {{!-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
-{{!-- Font --}}
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
-
-    
     {{ghost_head}}
 </head>
 
-<body class="{{body_class}}{{{block "body_class"}}}">
+<body class="{{body_class}} {{block "body_class"}}">
+    <!-- nav-layout: {{@custom.navigation_layout}} -->
+
     <div class="site-wrapper">
-        {{!-- Header --}}
+
+        {{!-- Header (Navigation Partial) --}}
         <header class="site-header">
-            <div class="container">
-                <div class="header-inner">
-                    <div class="site-logo">
-                        {{#if @site.logo}}
-                            <a href="{{@site.url}}">
-                                <img src="{{@site.logo}}" alt="{{@site.title}}" class="logo-img">
-                            </a>
-                        {{else}}
-                            <a href="{{@site.url}}" class="site-title">{{@site.title}}</a>
-                        {{/if}}
-                    </div>
-                    
-                    <nav class="site-nav">
-                        {{navigation}}
-                    </nav>
-                    
-                    <div class="header-actions">
-                        <button class="search-toggle" aria-label="Search">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </button>
-                        <button class="mobile-menu-toggle" aria-label="Menu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            {{> "navigation"}}
         </header>
 
-        {{!-- Main content --}}
+        {{!-- Main Content --}}
         <main class="site-main">
             {{{body}}}
         </main>
 
-        {{!-- Footer --}}
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-info">
-                        <h3>{{@site.title}}</h3>
-                        {{#if @site.description}}
-                            <p>{{@site.description}}</p>
-                        {{/if}}
-                    </div>
-                    
-                    <div class="footer-nav">
-                        <h4>Navigasi</h4>
-                        {{navigation type="secondary"}}
-                    </div>
-                    
-                    <div class="footer-social">
-                        <h4>Media Sosial</h4>
-                        <div class="social-links">
-                            {{#if @site.facebook}}
-    <a href="{{social_url type="facebook"}}" target="_blank" rel="noopener">Facebook</a>
-{{/if}}
-{{#if @site.twitter}}
-    <a href="{{social_url type="twitter"}}" target="_blank" rel="noopener">Twitter</a>
-{{/if}}
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
-                    <p>Powered by <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a></p>
-                </div>
-            </div>
-        </footer>
+        {{!-- Footer Partial --}}
+        {{> "footer"}}
+
     </div>
 
     <script src="{{asset "js/main.js"}}"></script>

@@ -24,57 +24,54 @@
                     {{/if}}
                 </div>
                 <div class="author-stats">
-                    <span class="post-count">{{plural ../pagination.total empty='Belum ada artikel' singular='% artikel' plural='% artikel'}}</span>
+                    <span class="post-count">
+                        {{plural ../pagination.total empty='Belum ada artikel' singular='% artikel' plural='% artikel'}}
+                    </span>
                 </div>
             </div>
         </header>
 
         {{!-- Author Posts --}}
-        {{#if posts}}
-            <section class="author-posts">
-                <h2 class="section-title">Artikel oleh {{name}}</h2>
-                <div class="news-grid">
-                    {{#foreach posts}}
-                        <article class="news-article">
-                            {{#if feature_image}}
-                                <div class="article-image">
-                                    <a href="{{url}}">
-                                        <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
-                                    </a>
-                                </div>
-                            {{/if}}
-                            <div class="article-content">
-                                {{#if primary_tag}}
-                                    <span class="article-tag">{{primary_tag.name}}</span>
-                                {{/if}}
-                                <h3 class="article-title">
-                                    <a href="{{url}}">{{title}}</a>
-                                </h3>
-                                {{#if excerpt}}
-                                    <p class="article-excerpt">{{excerpt}}</p>
-                                {{/if}}
-                                <div class="article-meta">
-                                    <time datetime="{{date format="YYYY-MM-DD"}}">
-                                        {{date format="DD MMMM YYYY"}}
-                                    </time>
-                                    <span class="reading-time">{{reading_time minute="menit" minutes="menit"}}</span>
-                                </div>
-                            </div>
-                        </article>
-                    {{/foreach}}
-                </div>
+        {{#get "posts" filter="authors:{{slug}}" include="tags,authors" limit="100"}}
+            {{#if posts}}
+                <section class="author-posts">
+                    <h2 class="section-title visually-hidden">Artikel oleh {{name}}</h2>
+                    <div class="news-grid">
+                        {{#foreach posts}}
+  <article class="news-article">
+    {{#if feature_image}}
+      <div class="article-image">
+        <a href="{{url}}">
+          <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
+        </a>
+      </div>
+    {{/if}}
+    <div class="article-content">
+      <h3 class="article-title">
+        <a href="{{url}}">{{title}}</a>
+      </h3>
+      {{#if excerpt}}
+        <p class="article-excerpt">{{excerpt}}</p>
+      {{/if}}
+      <time datetime="{{date format="YYYY-MM-DD"}}">
+        {{date format="DD MMMM YYYY"}}
+      </time>
+    </div>
+  </article>
+{{/foreach}}
 
-                {{!-- Pagination --}}
-                {{pagination}}
-            </section>
-        {{else}}
-            <div class="no-posts">
-                <h2>Belum ada artikel yang ditulis</h2>
-                <p>{{name}} belum menerbitkan artikel apapun.</p>
-            </div>
-        {{/if}}
+                    </div>
+
+                    {{pagination}}
+                </section>
+            {{else}}
+                <div class="no-posts">
+                    <h2>Belum ada artikel yang ditulis</h2>
+                    <p>{{../name}} belum menerbitkan artikel apapun.</p>
+                </div>
+            {{/if}}
+        {{/get}}
     </div>
 </div>
 
 {{/author}}
-

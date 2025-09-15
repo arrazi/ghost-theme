@@ -1,14 +1,13 @@
 {{!-- Pagination partial for BBC Indonesia inspired theme --}}
-
 {{#if pagination}}
 <nav class="pagination" role="navigation" aria-label="Pagination Navigation">
     {{#if pagination.prev}}
         <a href="{{page_url pagination.prev}}" class="pagination-prev" rel="prev">
-            <span class="pagination-label">← Sebelumnya</span>
+            ← Sebelumnya
         </a>
     {{else}}
         <span class="pagination-prev pagination-disabled">
-            <span class="pagination-label">← Sebelumnya</span>
+            ← Sebelumnya
         </span>
     {{/if}}
 
@@ -19,24 +18,22 @@
 
     {{#if pagination.next}}
         <a href="{{page_url pagination.next}}" class="pagination-next" rel="next">
-            <span class="pagination-label">Selanjutnya →</span>
+            Selanjutnya →
         </a>
     {{else}}
         <span class="pagination-next pagination-disabled">
-            <span class="pagination-label">Selanjutnya →</span>
+            Selanjutnya →
         </span>
     {{/if}}
 </nav>
 
-{{!-- Extended pagination with page numbers for larger screens --}}
 <nav class="pagination-extended" role="navigation" aria-label="Extended Pagination">
     {{#if pagination.prev}}
         <a href="{{page_url pagination.prev}}" class="page-link page-prev" rel="prev">
-            ← Sebelumnya
+            ←
         </a>
     {{/if}}
 
-    {{!-- First page --}}
     {{#unless pagination.isFirst}}
         <a href="{{page_url 1}}" class="page-link">1</a>
         {{#if pagination.from}}
@@ -46,7 +43,6 @@
         {{/if}}
     {{/unless}}
 
-    {{!-- Page numbers around current --}}
     {{#foreach pagination.pages}}
         {{#if current}}
             <span class="page-link page-current" aria-current="page">{{number}}</span>
@@ -55,7 +51,6 @@
         {{/if}}
     {{/foreach}}
 
-    {{!-- Last page --}}
     {{#unless pagination.isLast}}
         {{#if pagination.to}}
             {{#unless (eq pagination.to pagination.pages)}}
@@ -67,7 +62,7 @@
 
     {{#if pagination.next}}
         <a href="{{page_url pagination.next}}" class="page-link page-next" rel="next">
-            Selanjutnya →
+            →
         </a>
     {{/if}}
 </nav>

@@ -1,0 +1,18 @@
+<section class="featured-grid">
+  <div class="grid-wrapper">
+    <div class="news-grid">
+      {{#get "posts" filter="featured:true" limit="5"}}
+        {{#foreach posts}}
+          <article class="news-card">
+            <a href="{{url}}">
+              <div class="news-info">
+                <h3 class="news-title font-semibold">{{title}}</h3>
+                <time class="news-date font-regular">{{date format="D MMMM YYYY"}}</time>
+              </div>
+            </a>
+          </article>
+        {{/foreach}}
+      {{/get}}
+    </div>
+  </div>
+</section>

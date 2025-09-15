@@ -1,0 +1,17 @@
+{{!-- Breaking News Widget --}}
+{{#get "posts" limit="1" filter="tag:hash-breaking" include="tags"}}
+  {{#if posts}}
+    <div class="sidebar-widget breaking-widget">
+      <h3 class="widget-title">Breaking News</h3>
+      {{#foreach posts}}
+        <div class="breaking-subtitle">{{title}}</div>
+
+        <div class="breaking-scroll">
+          {{content}}
+        </div>
+
+        <a href="{{url}}" class="breaking-link">Baca selengkapnya →</a>
+      {{/foreach}}
+    </div>
+  {{/if}}
+{{/get}}

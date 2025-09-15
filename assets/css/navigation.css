@@ -1,85 +1,307 @@
+/* ============================================
+   HEADER
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--color-text);
+  color: #fff;
+  width: 100%;
+  min-height: 80px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  padding-left: 0;
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+.site-logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+  justify-self: start;
+  margin-left: 0;
+}
+
+.site-logo img,
+.logo-img {
+  max-height: 70px;
+  height: auto;
+  width: auto;
+}
+
+/* ============================================
+   NAVIGATION WRAPPER
+   ============================================ */
+.site-navigation {
+  width: 100%;
+  color: var(--color-primary);
+}
+
+.site-navigation .nav-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-gap);
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* logo - menu - search */
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ============================================
+   NAVIGATION LINKS
+   ============================================ */
 .nav-list {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2.4rem;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-item {
-    position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.5rem;
-    padding: 1rem 0;
-    display: block;
-    transition: all 0.2s ease;
-    position: relative;
+  color: #1b1a1a;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 0.6rem 0;
+  transition: color 0.2s ease;
 }
 
-.nav-link:hover,
-.nav-current {
-    color: var(--color-primary);
+.nav-link:hover {
+  color: var(--color-primary);
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-primary);
-    transition: width 0.3s ease;
+.nav-link.nav-current {
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
-.nav-link:hover::after,
-.nav-current::after {
-    width: 100%;
+/* ============================================
+   SEARCH ICON BUTTON
+   ============================================ */
+.nav-search {
+  flex: 0 0 auto;
+  justify-self: end;
 }
 
+.gh-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--color-darker-gray);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.gh-icon-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================
+   PRIMARY vs SECONDARY NAV
+   ============================================ */
+.site-navigation.primary-nav {
+  position: relative;
+  background: none;
+  min-height: 60px;
+  z-index: 1000;
+}
+
+.site-navigation.secondary-nav {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.site-navigation.secondary-nav .nav-list {
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.site-navigation.secondary-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.4rem;
+}
+
+.site-navigation.secondary-nav .nav-link:hover {
+  color: #fff;
+}
+
+/* Pastikan primary nav tidak muncul di footer */
+.site-footer .primary-nav {
+  display: none !important;
+}
+
+/* ============================================
+   MOBILE NAVIGATION
+   ============================================ */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.mobile-menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 4px 0;
+  background: currentColor;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+/* ============================================
+   MOBILE NAVIGATION
+   ============================================ */
 @media (max-width: 768px) {
-    .nav-list {
-        position: fixed;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--color-background);
-        flex-direction: column;
-        gap: 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border-top: 1px solid var(--color-border);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 90;
-        padding: 2rem 0;
-    }
-    
-    .site-nav.active .nav-list {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .nav-item {
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid var(--color-border);
-    }
-    
-    .nav-item:last-child {
-        border-bottom: none;
-    }
-    
-    .nav-link {
-        padding: 1.6rem 2rem;
-        font-size: 1.6rem;
-    }
+  /* wrapper */
+  .site-navigation .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--container-gap);
+  }
+
+  /* logo */
+  .site-logo {
+    margin-right: auto;
+  }
+
+  /* burger button */
+  .mobile-menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+  }
+  .mobile-menu-toggle span {
+    width: 20px;
+    height: 2px;
+    margin: 4px 0;
+    background: currentColor;
+  }
+
+  /* nav-list default: hidden */
+  .site-navigation .nav-list {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin: 1rem 0 0 0;
+    padding: 0;
+  }
+
+  /* nav-list saat toggle aktif */
+  .site-navigation.active .nav-list {
+    display: flex;
+  }
+
+  .site-navigation .nav-link {
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 0.8rem 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* search di bawah menu */
+  .site-navigation .gh-search {
+    margin-top: 1rem;
+    align-self: flex-start;
+  }
+}
+/* ================================
+   MOBILE OVERLAY NAV
+   ================================ */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: -100%; /* disembunyikan ke kiri */
+  width: 80%;
+  max-width: 320px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  padding: 2rem;
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.mobile-overlay.active {
+  left: 0; /* geser masuk */
+}
+
+.mobile-overlay .nav-list {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobile-overlay .nav-link {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #000;
+}
+
+@media (min-width: 769px) {
+  .mobile-overlay {
+    display: none;
+  }
+}
+/* ============================================
+   RESPONSIVE NAVIGATION SWITCH
+   ============================================ */
+
+/* Tampilkan desktop-nav hanya di layar besar */
+@media (min-width: 769px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+  .mobile-overlay {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+
+/* Tampilkan mobile-nav (overlay) hanya di layar kecil */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-overlay {
+    display: flex !important;
+  }
+  .mobile-menu-toggle {
+    display: inline-flex !important;
+  }
 }

@@ -1,11 +1,11 @@
 {
-  "name": "bbc-indonesia-theme",
-  "description": "A modern news theme inspired by BBC Indonesia design for Ghost 6.0",
+  "name": "Molu",
+  "description": "A modern news theme for Ghost 6.0",
   "version": "1.0.0",
   "license": "MIT",
   "author": {
-    "name": "Your Name",
-    "email": "your@email.com"
+    "name": "Razi Dot Muray",
+    "email": "rajinews@gmail.com"
   },
   "keywords": [
     "ghost-theme",
@@ -40,7 +40,10 @@
     "custom": {
       "navigation_layout": {
         "type": "select",
-        "options": ["Logo on the left", "Logo in the center"],
+        "options": [
+          "Logo on the left",
+          "Logo in the center"
+        ],
         "default": "Logo on the left"
       },
       "show_publication_cover": {

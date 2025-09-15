@@ -1,0 +1,45 @@
+<section class="hero-lead-grid">
+  <div class="container grid-wrapper">
+
+    {{!-- Headline utama --}}
+    <div class="hero-lead-main">
+      {{#foreach posts from="1" to="1"}}
+        <article class="hero-article">
+          <a href="{{url}}">
+            {{#if feature_image}}
+              <div class="hero-image">
+                <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+              </div>
+            {{/if}}
+
+            <div class="hero-content">
+              <h1 class="hero-title font-semibold">{{title}}</h1>
+              <p class="hero-excerpt font-regular">{{excerpt}}</p>
+              <time class="post-date font-regular">{{date format="DD MMMM YYYY"}}</time>
+            </div>
+          </a>
+        </article>
+      {{/foreach}}
+    </div>
+
+    {{!-- Subheadline samping --}}
+    <div class="hero-lead-side">
+      {{#foreach posts from="2" to="5"}}
+        <article class="subheadline-card">
+          <a href="{{url}}">
+            {{#if feature_image}}
+              <div class="subheadline-thumb">
+                <img src="{{img_url feature_image size="s"}}" alt="{{title}}">
+              </div>
+            {{/if}}
+            <div class="subheadline-info">
+              <h3 class="subheadline-title font-semibold">{{title}}</h3>
+              <time class="subheadline-date font-regular">{{date format="DD MMMM YYYY"}}</time>
+            </div>
+          </a>
+        </article>
+      {{/foreach}}
+    </div>
+
+  </div>
+</section>

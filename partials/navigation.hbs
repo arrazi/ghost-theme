@@ -1,12 +1,54 @@
-{{!-- Navigation partial for BBC Indonesia inspired theme --}}
+<nav class="site-navigation primary-nav">
+  <div class="nav-inner">
+    
+    {{!-- Logo --}}
+    <div class="site-logo">
+      <a href="{{@site.url}}">
+        {{#if @site.logo}}
+          <img src="{{@site.logo}}" alt="{{@site.title}}" class="logo-img">
+        {{else}}
+          <span class="site-title">{{@site.title}}</span>
+        {{/if}}
+      </a>
+    </div>
 
-<ul class="nav-list">
-    {{#foreach navigation}}
+    {{!-- Burger (hanya mobile) --}}
+    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    {{!-- Navigation menu (desktop) --}}
+    <ul class="nav-list desktop-nav">
+      {{#foreach @site.navigation}}
         <li class="nav-item">
-            <a href="{{url absolute="true"}}" class="nav-link {{#if current}}nav-current{{/if}}">
-                {{label}}
-            </a>
+          <a href="{{this.url}}" class="nav-link {{#if current}}nav-current{{/if}}">
+            {{label}}
+          </a>
         </li>
-    {{/foreach}}
-</ul>
+      {{/foreach}}
+    </ul>
 
+    {{!-- Search desktop --}}
+    <div class="nav-search desktop-nav">
+      {{> "search-toggle"}}
+    </div>
+  </div>
+</nav>
+
+{{!-- Mobile overlay menu --}}
+<div class="mobile-overlay">
+  <ul class="nav-list">
+    {{#foreach @site.navigation}}
+      <li class="nav-item">
+        <a href="{{this.url}}" class="nav-link {{#if current}}nav-current{{/if}}">
+          {{label}}
+        </a>
+      </li>
+    {{/foreach}}
+  </ul>
+  <div class="nav-search">
+    {{> "search-toggle"}}
+  </div>
+</div>
